@@ -46,12 +46,12 @@ async def reclutar(interaction: discord.Interaction):
     # Texto exacto solicitado con su decoración, enlace y formato original
     mensaje_publico = (
         "🇪🇸: 𝗘𝘀𝘁𝗲 𝘀𝗲𝗿𝘃𝗶𝗱𝗼𝗿 𝗵𝗮 𝘀𝗶𝗱𝗼 𝘀𝗲𝗹𝗲𝗰𝗰𝗶𝗼𝗻𝗮𝗱𝗼 𝗽𝗮𝗿𝗮 𝗿𝗲𝗰𝗹𝘂𝘁𝗮𝗿 𝗺𝗶𝗲𝗺𝗯𝗿𝗼𝘀,𝗽𝗮𝗿𝗮 𝗹𝗮 𝗨𝗻𝗶ó𝗻 𝗔𝗻𝘁𝗶 𝗚𝗿𝘂𝗽𝗼𝘀 𝗠𝗮𝗹𝘃𝗮𝗱𝗼𝘀\n"
-        "🇺🇸: 𝗧𝗵𝗶𝘀 𝘀𝗲𝗿𝘃𝗲𝗿 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝗲𝗹𝗲𝗰𝘁𝗲𝗱 𝘁𝗼 𝗿𝗲𝗰𝗿𝘂𝗶𝘁 𝗺𝗲𝗺𝗯𝗲𝗿𝘀 𝗳𝗼𝗿 𝘁𝗵𝗲 𝗔𝗻𝘁𝗶-𝗘𝘃𝗶𝗹 𝗚𝗿𝗼𝘂𝗽𝘀 𝗨𝗻𝗶𝗼𝗻.\n"
+        "🇺🇸: 𝗧𝗵𝗶𝘀 𝘀𝗲𝗿𝘃𝗲𝗿 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝗲𝗹𝗲𝗰𝘁𝗲𝗱 𝘁𝗼 𝗿𝗲𝗰𝗿𝘂𝗶𝘁 𝗺𝗲𝗺𝗯𝗲𝗿𝘀 𝗳𝗼𝗿 𝘁𝗵𝗲 𝗔𝗻𝘁𝗶-𝗘𝘃𝗶𝗹 𝗚𝗿𝘂𝗽𝘀 𝗨𝗻𝗶𝗼𝗻.\n"
         "𝗟𝗜𝗡𝗞:\n"
         "https://discord.gg/xcdJRkhx7s"
     )
 
-        archivo = discord.File(nombre_imagen)
+    archivo = discord.File(nombre_imagen)
 
     try:
         # Enviar el mensaje público directamente como respuesta a la interacción
@@ -65,20 +65,9 @@ async def reclutar(interaction: discord.Interaction):
             f"❌ Ocurrió un error al enviar el mensaje: {e}",
             ephemeral=True
         )
-        
-        
-        # Confirmación privada (efímera) solo para ti
-        await interaction.response.send_message(
-            "✅ ¡El mensaje de reclutamiento se ha enviado correctamente al canal!", 
-            ephemeral=True
-        )
-    except Exception as e:
-        await interaction.response.send_message(
-            f"❌ Ocurrió un error al enviar el mensaje: {e}",
-            ephemeral=True
-        )
 
 # 3. Arrancar Flask y el Bot simultáneamente
 if __name__ == "__main__":
     keep_alive()
     bot.run(os.getenv("DISCORD_TOKEN"))
+    
