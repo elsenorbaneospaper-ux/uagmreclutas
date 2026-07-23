@@ -51,14 +51,21 @@ async def reclutar(interaction: discord.Interaction):
         "https://discord.gg/xcdJRkhx7s"
     )
 
-    archivo = discord.File(nombre_imagen)
+        archivo = discord.File(nombre_imagen)
 
     try:
-        # Enviar el mensaje y la imagen de forma pública al canal actual
-        await interaction.channel.send(
+        # Enviar el mensaje público directamente como respuesta a la interacción
+        await interaction.response.send_message(
             content=mensaje_publico,
             file=archivo
         )
+    except Exception as e:
+        # Si algo falla, mandamos un aviso efímero solo para ti
+        await interaction.followup.send(
+            f"❌ Ocurrió un error al enviar el mensaje: {e}",
+            ephemeral=True
+        )
+        
         
         # Confirmación privada (efímera) solo para ti
         await interaction.response.send_message(
