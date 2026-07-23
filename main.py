@@ -43,10 +43,10 @@ async def reclutar(interaction: discord.Interaction):
         )
         return
 
-    # Texto exacto solicitado con su decoración, enlace y formato original
-    mensaje_privado = (
+    # Texto exacto de reclutamiento
+    mensaje_publico = (
         "🇪🇸: 𝗘𝘀𝘁𝗲 𝘀𝗲𝗿𝘃𝗶𝗱𝗼𝗿 𝗵𝗮 𝘀𝗶𝗱𝗼 𝘀𝗲𝗹𝗲𝗰𝗰𝗶𝗼𝗻𝗮𝗱𝗼 𝗽𝗮𝗿𝗮 𝗿𝗲𝗰𝗹𝘂𝘁𝗮𝗿 𝗺𝗶𝗲𝗺𝗯𝗿𝗼𝘀,𝗽𝗮𝗿𝗮 𝗹𝗮 𝗨𝗻𝗶ó𝗻 𝗔𝗻𝘁𝗶 𝗚𝗿𝘂𝗽𝗼𝘀 𝗠𝗮𝗹𝘃𝗮𝗱𝗼𝘀\n"
-        "🇺🇸: 𝗧𝗵𝗶𝘀 𝘀𝗲𝗿𝘃𝗲𝗿 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝗲𝗹𝗲𝗰𝘁𝗲𝗱 𝘁𝗼 𝗿𝗲𝗰𝗿𝘂𝗶𝘁 𝗺𝗲𝗺𝗯𝗲𝗿𝘀 𝗳𝗼𝗿 𝘁𝗵𝗲 𝗔𝗻𝘁𝗶-𝗘𝘃𝗶𝗹 𝗚𝗿𝘂𝗽𝘀 𝗨𝗻𝗶𝗼𝗻.\n"
+        "🇺🇸: 𝗧𝗵𝗶𝘀 𝘀𝗲𝗿𝘃𝗲𝗿 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝗲𝗹𝗲𝗰𝘁𝗲𝗱 to recruit members for the Anti-Evil Groups Union.\n"
         "𝗟𝗜𝗡𝗞:\n"
         "https://discord.gg/xcdJRkhx7s"
     )
@@ -54,17 +54,29 @@ async def reclutar(interaction: discord.Interaction):
     archivo = discord.File(nombre_imagen)
 
     try:
-        # Envía el mensaje con la imagen como respuesta efímera (solo visible para ti)
+        # Paso 1: Respondemos primero con el mensaje efímero (privado para ti) 
+        # con el aviso de éxito. Esto cumple con el tiempo límite de Discord.
         await interaction.response.send_message(
-            content=mensaje_privado,
-            file=archivo,
+            "✅ ¡Mensaje de reclutamiento enviado con éxito!", 
             ephemeral=True
         )
+
+        # Paso 2: Usamos el webhook de seguimiento (followup) para mandar 
+        # el mensaje de reclutamiento con la imagen de forma pública al canal.
+        await interaction.followup.send(
+            content=mensaje_publico,
+            file=archivo
+        )
+        
     except Exception as e:
-        await interaction.response.send_message(
-            f"❌ Ocurrió un error al enviar el mensaje: {e}",
-            ephemeral=True
-        )
+        # Si algo llega a fallar, te avisa de manera privada
+        try:
+            await interaction.followup.send(
+                f"❌ Ocurrió un error al enviar el mensaje: {e}",
+                ephemeral=True
+            )
+        except:
+            pass
 
 # 3. Arrancar Flask y el Bot simultáneamente
 if __name__ == "__main__":
