@@ -45,6 +45,7 @@ async def reclutar(interaction: discord.Interaction):
 
     # Texto exacto de reclutamiento
     mensaje_publico = (
+        "@everyone\n"
         "🇪🇸: 𝗘𝘀𝘁𝗲 𝘀𝗲𝗿𝘃𝗶𝗱𝗼𝗿 𝗵𝗮 𝘀𝗶𝗱𝗼 𝘀𝗲𝗹𝗲𝗰𝗰𝗶𝗼𝗻𝗮𝗱𝗼 𝗽𝗮𝗿𝗮 𝗿𝗲𝗰𝗹𝘂𝘁𝗮𝗿 𝗺𝗶𝗲𝗺𝗯𝗿𝗼𝘀,𝗽𝗮𝗿𝗮 𝗹𝗮 𝗨𝗻𝗶ó𝗻 𝗔𝗻𝘁𝗶 𝗚𝗿𝘂𝗽𝗼𝘀 𝗠𝗮𝗹𝘃𝗮𝗱𝗼𝘀\n"
         "🇺🇸: 𝗧𝗵𝗶𝘀 𝘀𝗲𝗿𝘃𝗲𝗿 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝗲𝗹𝗲𝗰𝘁𝗲𝗱 to recruit members for the Anti-Evil Groups Union.\n"
         "𝗟𝗜𝗡𝗞:\n"
